@@ -1,0 +1,42 @@
+{
+  "name": "get-gh-issues",
+  "version": "0.0.0",
+  "description": "Get github issues from your repo on your console",
+  "license": "MIT",
+  "repository": "jpsc/get-gh-issues",
+  "author": {
+    "name": "jpsc",
+    "email": "joao@voorhoede.nl",
+    "url": "raw.jpsc.space"
+  },
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    ""
+  ],
+  "dependencies": {
+    "chalk": "1.1.3",
+    "ghauth": "3.2.0",
+    "ghissues": "1.1.2",
+    "github-slug": "2.0.0",
+    "meow": "^3.7.0"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true
+  }
+}
