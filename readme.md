@@ -1,6 +1,9 @@
-# get-gh-issues [![Build Status](https://travis-ci.org/jpsc/get-gh-issues.svg?branch=master)](https://travis-ci.org/jpsc/get-gh-issues)
+# get-gh-issues
 
 > Get github issues from your repo on your console
+
+As simple as it says. Working on a issue and forget the number to reference on
+your commit message? Check it via CLI.
 
 
 ## Install
@@ -9,58 +12,13 @@
 $ npm install --save get-gh-issues
 ```
 
-
 ## Usage
 
-```js
-const getGhIssues = require('get-gh-issues');
-
-getGhIssues('unicorns');
-//=> 'unicorns & rainbows'
+```
+$ get-gh-issues
 ```
 
-
-## API
-
-### getGhIssues(input, [options])
-
-#### input
-
-Type: `string`
-
-Lorem ipsum.
-
-#### options
-
-##### foo
-
-Type: `boolean`<br>
-Default: `false`
-
-Lorem ipsum.
-
-
-## CLI
-
-```
-$ npm install --global get-gh-issues
-```
-
-```
-$ get-gh-issues --help
-
-  Usage
-    get-gh-issues [input]
-
-  Options
-    --foo  Lorem ipsum [Default: false]
-
-  Examples
-    $ get-gh-issues
-    unicorns & rainbows
-    $ get-gh-issues ponies
-    ponies & rainbows
-```
+**You can always alias to something shorter like `ghi`.**
 
 
 ## License
