@@ -42,11 +42,14 @@ function getIssues(authData) {
 			ghissues.list(authData, user, repo, (err, issues) => {
 				if (err) {
 					reject(err);
-				} else {
+				} else if (issues.length) {
 					console.log(`Issues from ${slug}:`);
 					issues.forEach(issue => {
-						console.log(`${chalk.bold.green(issue.number)}: ${issue.title}`);
+						const labels = issue.labels.map(label => label.name);
+						console.log(`${chalk.green(issue.number)}: ${issue.title} [${labels.join(',')}]`);
 					});
+				} else {
+					console.log(`${chalk.green('No issues, keep the good work.')}`);
 				}
 			});
 		}));
