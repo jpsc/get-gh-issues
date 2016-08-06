@@ -1,6 +1,6 @@
 {
   "name": "get-gh-issues",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get github issues from your repo on your console",
   "license": "MIT",
   "repository": "jpsc/get-gh-issues",
