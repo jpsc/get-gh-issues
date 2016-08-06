@@ -10,21 +10,50 @@ const authOptions = {
 	scopes: ['user']
 };
 
-module.exports = (input, opts) => {
-	if (typeof input !== 'string') {
-		throw new TypeError(`Expected a string, got ${typeof input}`);
-	}
-
-	opts = opts || {};
-
-	ghauth(authOptions, (err, authData) => {
-		ghissues.list(authData, 'voorhoede', 'fastatic', (err, list) => {
-			console.log('Issues in rvagg/node-levelup:');
-			list.forEach(i => {
-				console.log('#%s: %s', i.number, i.title);
-			});
+function getSlug() {
+	return new Promise((resolve, reject) => {
+		ghslug('./', (err, slug) => {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(slug);
+			}
 		});
 	});
+}
 
-	return input + ' & ' + (opts.postfix || 'rainbows');
+function setAuth() {
+	return new Promise((resolve, reject) => {
+		ghauth(authOptions, (err, authData) => {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(authData);
+			}
+		});
+	});
+}
+
+function getIssues(authData) {
+	return getSlug()
+		.then(slug => new Promise((resolve, reject) => {
+			const user = slug.split('/')[0];
+			const repo = slug.split('/')[1];
+			ghissues.list(authData, user, repo, (err, issues) => {
+				if (err) {
+					reject(err);
+				} else {
+					console.log(`Issues from ${slug}:`);
+					issues.forEach(issue => {
+						console.log(`${chalk.bold.green(issue.number)}: ${issue.title}`);
+					});
+				}
+			});
+		}));
+}
+
+module.exports = function () {
+	return setAuth()
+		.then(authData => getIssues(authData))
+		.catch(err => console.log(err));
 };
